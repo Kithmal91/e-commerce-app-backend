@@ -1,5 +1,0 @@
-com/imperia/ecommerce/controller/UserManagement.class
-com/imperia/ecommerce/EcommerceApplication.class
-com/imperia/ecommerce/repository/UserRepository.class
-com/imperia/ecommerce/model/User.class
-com/imperia/ecommerce/dto/UserDto.class
