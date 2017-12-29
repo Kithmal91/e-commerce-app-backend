@@ -1,0 +1,293 @@
+{
+	"id": "3370a985-913b-c50e-9cae-833405082b3b",
+	"name": "ecommerce-backend-api",
+	"description": "",
+	"order": [
+		"fbbbf2b7-ed6d-c619-0a54-aa7bb3902cb2",
+		"1f6de767-dd36-3010-e0df-dea0f18c3cad",
+		"ddca64cf-bd4d-bdab-9d41-4e0472cb639d",
+		"25812b12-5b54-920e-f748-a2b7421bd0e8",
+		"275c3db9-a1b5-1fbe-9384-eae63720a88f",
+		"bac8a475-5a44-6912-9322-91036e63e25a",
+		"106d5b1a-5124-5766-6ed1-b70a4d7b7fe3",
+		"631c87ee-a31e-bebb-c99d-6fb3771a6072"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1514538350709,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "106d5b1a-5124-5766-6ed1-b70a4d7b7fe3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/item-mgt/get-all",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "Item Get All",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514554037361,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "1f6de767-dd36-3010-e0df-dea0f18c3cad",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/category-mgt/get-all",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get-All Category",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514543900179,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "25812b12-5b54-920e-f748-a2b7421bd0e8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/category-mgt/category-id/get?id=7",
+			"queryParams": [
+				{
+					"key": "id",
+					"value": "7",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "get-category-by-id",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514545255606,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "275c3db9-a1b5-1fbe-9384-eae63720a88f",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/item-mgt/save",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1514553061986,
+			"name": "Item Save",
+			"description": "",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"responses": [],
+			"rawModeData": "{\n\t\"itemCategoryId\" : \"6\",\n    \"itemName\" : \"POLO\",\n    \"quantity\" : 1,\n    \"retailPrice\" : 100.00,\n    \"width\" : 5.00,\n    \"height\" : 10.00,\n    \"weight\" : 5.00,\n    \"referenceId\" : \"REF001\",\n    \"imageRefId\" : \"IMG001\",\n    \"status\" : \"ACTIVE\",\n    \"description\" : \"POLO Tshirts\"\n}"
+		},
+		{
+			"id": "631c87ee-a31e-bebb-c99d-6fb3771a6072",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/item-mgt/by-category/get",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get Item By Category",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514555547181,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "bac8a475-5a44-6912-9322-91036e63e25a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/item-mgt/item-id/get?id=2",
+			"queryParams": [
+				{
+					"key": "id",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "Item Get by ID",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514553799854,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "ddca64cf-bd4d-bdab-9d41-4e0472cb639d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/category-mgt/save",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Category Save",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514543915931,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\n\t\"mainCategory\" : \"Trousers\",\n    \"categoryName\" : \"Office Trousers\",\n    \"description\" : \"Office Wear Trousers\",\n    \"status\" : \"ACTIVE\"\n}"
+		},
+		{
+			"id": "fbbbf2b7-ed6d-c619-0a54-aa7bb3902cb2",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/ecommerce-ws/user-mgt/save?username=Kithmal&password=123",
+			"queryParams": [
+				{
+					"key": "username",
+					"value": "Kithmal",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3370a985-913b-c50e-9cae-833405082b3b",
+			"data": null,
+			"dataMode": "params",
+			"name": "Save User",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514538528851,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
