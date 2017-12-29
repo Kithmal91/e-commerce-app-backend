@@ -3,7 +3,7 @@ package com.imperia.ecommerce.dto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Category Dto
+ * CategoryDto Dto
  * Created by Kithmal on 12/11/17.
  */
 @XmlRootElement

@@ -1,27 +1,24 @@
 package com.imperia.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Category Table
+ * CategoryDto Table
  * Created by Kithmal on 12/11/17.
  */
-public class Category {
+public class CategoryDto {
 
-    @Id
-    private String id;
+    @JsonProperty(value = "id")
+    private Long id;
     private String mainCategory;
     private String categoryName;
     private String description;
     private String status;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getMainCategory() {
         return mainCategory;
@@ -53,5 +50,13 @@ public class Category {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

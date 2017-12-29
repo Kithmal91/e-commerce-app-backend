@@ -1,40 +1,80 @@
 package com.imperia.ecommerce.controller;
 
-import com.imperia.ecommerce.dto.CategoryDto;
-import com.imperia.ecommerce.model.Category;
-import com.imperia.ecommerce.model.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.imperia.ecommerce.common.WSPath;
+import com.imperia.ecommerce.entity.Category;
+import com.imperia.ecommerce.model.CategoryDto;
 import com.imperia.ecommerce.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Manage all the category related function
  * Created by Kithmal on 12/11/17.
  */
-@RequestMapping("/category-mgt")
+@RequestMapping(WSPath.CATEGORY)
 @RestController
 public class CategoryManagement {
 
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(path = "/save", method = RequestMethod.POST)
+    /**
+     * Save CategoryDto
+     *
+     * @param categoryDto
+     * @return
+     */
+    @RequestMapping(path = WSPath.CATEGORY_SAVE, method = RequestMethod.POST)
     @ResponseBody
-    public Category saveUser(CategoryDto categoryDto) {
+    public ResponseEntity<Category> save(@RequestBody CategoryDto categoryDto) {
+
 
         Category category = new Category();
-        category.setStatus(category.getStatus());
-        category.setCategoryName(category.getCategoryName());
-        category.setDescription(category.getDescription());
-        category.setMainCategory(category.getMainCategory());
-
+        category.setStatus(categoryDto.getStatus());
+        category.setCategoryName(categoryDto.getCategoryName());
+        category.setDescription(categoryDto.getDescription());
+        category.setMainCategory(categoryDto.getMainCategory());
 
         Category exCategory = categoryRepository.save(category);
-        return exCategory;
+        return ResponseEntity.ok(exCategory);
 
     }
 
+    /**
+     * Get all category
+     *
+     * @return
+     */
+    @RequestMapping(path = WSPath.CATEGORY_GET_ALL, method = RequestMethod.GET)
+    @ResponseBody
+    public List<Category> getAll() {
 
+        Iterable<Category> categoryList = categoryRepository.findAll();
+        List<Category> list = new ArrayList<>();
+        categoryList.forEach(list::add);
+
+        return list;
+    }
+
+    /**
+     * Get category by ID
+     *
+     * @param categoryDto
+     * @return
+     */
+    @RequestMapping(path = WSPath.CATEGORY_GET_BY_ID, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Category> getById(CategoryDto categoryDto) {
+
+        Category category = categoryRepository.findOne(categoryDto.getId());
+        return ResponseEntity.ok(category);
+    }
 
 
 }
