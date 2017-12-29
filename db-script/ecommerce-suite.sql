@@ -1,0 +1,1 @@
+SELECT * FROM ecommerce_suite.ecommerce_suite_item;

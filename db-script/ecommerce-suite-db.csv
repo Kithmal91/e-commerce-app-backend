@@ -1,4 +1,0 @@
-item_id,item_name,item_quantity,item_retail_price,item_width,item_height,item_weight,item_reference_id,item_image_reference,item_status,item_description,added_by,added_date,modified_by,modified_date,category_id
-2,POLO,1,100,5,10,5,REF001,IMG001,ACTIVE,"POLO Tshirts",NULL,"2017-12-29 18:39:15",NULL,"2017-12-29 18:39:15",6
-3,RALPH,1,100,5,10,5,REF002,IMG002,ACTIVE,"RALPH Trousers",NULL,"2017-12-29 18:58:21",NULL,"2017-12-29 18:58:21",7
-4,Giordano,1,150,5,10,5,REF003,IMG003,ACTIVE,"Giordano Tshirts",NULL,"2017-12-29 19:27:13",NULL,"2017-12-29 19:27:13",6
