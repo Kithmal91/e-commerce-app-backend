@@ -2,9 +2,7 @@ package com.imperia.ecommerce.controller;
 
 import com.imperia.ecommerce.common.WSPath;
 import com.imperia.ecommerce.dto.ItemDto;
-import com.imperia.ecommerce.entity.Category;
 import com.imperia.ecommerce.entity.Item;
-import com.imperia.ecommerce.model.CategoryDto;
 import com.imperia.ecommerce.repository.CategoryRepository;
 import com.imperia.ecommerce.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;

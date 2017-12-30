@@ -1,7 +1,6 @@
 package com.imperia.ecommerce.repository;
 
 import com.imperia.ecommerce.entity.Category;
-import com.imperia.ecommerce.model.CategoryDto;
 import org.springframework.data.repository.CrudRepository;
 
 /**
