@@ -14,9 +14,13 @@ public class CategoryDto {
 
     @JsonProperty(value = "id")
     private Long id;
+    @JsonProperty(value = "mainCategory")
     private String mainCategory;
+    @JsonProperty(value = "categoryName")
     private String categoryName;
+    @JsonProperty(value = "description")
     private String description;
+    @JsonProperty(value = "status")
     private String status;
 
 

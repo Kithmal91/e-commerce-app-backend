@@ -1,7 +1,11 @@
 package com.imperia.ecommerce.repository;
 
 import com.imperia.ecommerce.entity.Category;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  *
