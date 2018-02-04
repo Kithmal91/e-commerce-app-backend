@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.ws.Response;
+import org.springframework.http.HttpStatus;
 
 /**
- * Manage all the category related function
- * Created by Kithmal on 12/11/17.
+ * Manage all the category related function Created by Kithmal on 12/11/17.
  */
 @RequestMapping(WSPath.CATEGORY)
 @RestController
@@ -31,7 +32,6 @@ public class CategoryManagement {
     @RequestMapping(path = WSPath.CATEGORY_SAVE, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Category> save(@RequestBody CategoryDto categoryDto) {
-
 
         Category category = new Category();
         category.setStatus(categoryDto.getStatus());
@@ -51,13 +51,13 @@ public class CategoryManagement {
      */
     @RequestMapping(path = WSPath.CATEGORY_GET_ALL, method = RequestMethod.GET)
     @ResponseBody
-    public List<Category> getAll() {
+    public ResponseEntity<List<Category>> getAll() {
 
         Iterable<Category> categoryList = categoryRepository.findAll();
         List<Category> list = new ArrayList<>();
         categoryList.forEach(list::add);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
-        return list;
     }
 
     /**
@@ -73,6 +73,5 @@ public class CategoryManagement {
         Category category = categoryRepository.findOne(categoryDto.getId());
         return ResponseEntity.ok(category);
     }
-
 
 }
