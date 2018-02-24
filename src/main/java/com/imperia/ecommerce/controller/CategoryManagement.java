@@ -33,14 +33,17 @@ public class CategoryManagement {
     @ResponseBody
     public ResponseEntity<Category> save(@RequestBody CategoryDto categoryDto) {
 
-        Category category = categoryRepository.findOne(categoryDto.getId());
+        Category category = null;
 
-        if(null != category){
-            category.setStatus(categoryDto.getStatus());
-            category.setCategoryName(categoryDto.getCategoryName());
-            category.setDescription(categoryDto.getDescription());
-            category.setMainCategory(categoryDto.getMainCategory());
+        if(categoryDto.getId() != null) {
+            category = categoryRepository.findOne(categoryDto.getId());
+            if(null != category){
+                category.setStatus(categoryDto.getStatus());
+                category.setCategoryName(categoryDto.getCategoryName());
+                category.setDescription(categoryDto.getDescription());
+                category.setMainCategory(categoryDto.getMainCategory());
 
+            }
         } else {
             category = new Category();
             category.setStatus(categoryDto.getStatus());
