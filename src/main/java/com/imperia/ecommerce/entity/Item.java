@@ -18,6 +18,10 @@ public class Item extends Audit {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private ImageBank imageBank;
+
     @Column(name = "item_name")
     private String itemName;
 
@@ -39,108 +43,178 @@ public class Item extends Audit {
     @Column(name = "item_reference_id")
     private String referenceId;
 
-    @Column(name = "item_image_reference")
-    private String imageRefId;
-
     @Column(name = "item_status")
     private String status;
 
     @Column(name = "item_description")
     private String description;
 
+    /**
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getRetailPrice() {
-        return retailPrice;
-    }
-
-    public void setRetailPrice(double retailPrice) {
-        this.retailPrice = retailPrice;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public String getReferenceId() {
-        return referenceId;
-    }
-
-    public void setReferenceId(String referenceId) {
-        this.referenceId = referenceId;
-    }
-
-    public String getImageRefId() {
-        return imageRefId;
-    }
-
-    public void setImageRefId(String imageRefId) {
-        this.imageRefId = imageRefId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    /**
+     * @return the category
+     */
     public Category getCategory() {
         return category;
     }
 
+    /**
+     * @param category the category to set
+     */
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    /**
+     * @return the imageBank
+     */
+    public ImageBank getImageBank() {
+        return imageBank;
+    }
+
+    /**
+     * @param imageBank the imageBank to set
+     */
+    public void setImageBank(ImageBank imageBank) {
+        this.imageBank = imageBank;
+    }
+
+    /**
+     * @return the itemName
+     */
+    public String getItemName() {
+        return itemName;
+    }
+
+    /**
+     * @param itemName the itemName to set
+     */
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the retailPrice
+     */
+    public double getRetailPrice() {
+        return retailPrice;
+    }
+
+    /**
+     * @param retailPrice the retailPrice to set
+     */
+    public void setRetailPrice(double retailPrice) {
+        this.retailPrice = retailPrice;
+    }
+
+    /**
+     * @return the width
+     */
+    public double getWidth() {
+        return width;
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    /**
+     * @return the height
+     */
+    public double getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    /**
+     * @return the weight
+     */
+    public double getWeight() {
+        return weight;
+    }
+
+    /**
+     * @param weight the weight to set
+     */
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * @return the referenceId
+     */
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    /**
+     * @param referenceId the referenceId to set
+     */
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

@@ -1,8 +1,7 @@
 package com.imperia.ecommerce.common;
 
 /**
- * All the webserivce paths
- * Created by Kithmal on 12/29/17.
+ * All the webserivce paths Created by Kithmal on 12/29/17.
  */
 public interface WSPath {
 
@@ -33,5 +32,16 @@ public interface WSPath {
     //GET Items by Category
     String ITEM_BY_CATEGORY = "/by-category/get";
 
+    //Image Bank Management
+    String IMAGE = "/image-mgt";
+
+    // Save Image
+    String IMAGE_SAVE = "/save";
+
+    //Get all Images
+    String IMAGE_GET_ALL = "/get-all";
+
+    //Get by Image ID
+    String IMAGE_GET_BY_ID = "/item-id/get";
 
 }

@@ -2,8 +2,10 @@ package com.imperia.ecommerce.controller;
 
 import com.imperia.ecommerce.common.WSPath;
 import com.imperia.ecommerce.dto.ItemDto;
+import com.imperia.ecommerce.entity.ImageBank;
 import com.imperia.ecommerce.entity.Item;
 import com.imperia.ecommerce.repository.CategoryRepository;
+import com.imperia.ecommerce.repository.ImageBankRepository;
 import com.imperia.ecommerce.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * All the operations regarding items
- * Created by Kithmal on 12/29/17.
+ * All the operations regarding items Created by Kithmal on 12/29/17.
  */
 @RequestMapping(WSPath.ITEM)
 @RestController
@@ -26,6 +27,9 @@ public class ItemManagement {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    ImageBankRepository imageBankRepository;
+
     /**
      * Save Item
      *
@@ -36,19 +40,27 @@ public class ItemManagement {
     @ResponseBody
     public ResponseEntity<Item> save(@RequestBody ItemDto itemDto) {
 
+        ImageBank bank = new ImageBank();
+        bank.setId(itemDto.getReferenceId());
+        bank.setDescription(itemDto.getDescription());
+        bank.setImagePath(itemDto.getImageId());
+        bank.setStatus(itemDto.getStatus());
+
+        imageBankRepository.save(bank);
+
         Item item = new Item();
         item.setDescription(itemDto.getDescription());
         item.setStatus(itemDto.getStatus());
         item.setHeight(itemDto.getHeight());
-        item.setImageRefId(itemDto.getImageRefId());
+        item.setImageBank(bank);
         item.setItemName(itemDto.getItemName());
         item.setQuantity(itemDto.getQuantity());
         item.setReferenceId(itemDto.getReferenceId());
         item.setRetailPrice(itemDto.getRetailPrice());
         item.setWeight(itemDto.getWeight());
         item.setWidth(itemDto.getWidth());
-        item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
 
+        item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
         Item exItem = itemRepository.save(item);
         return ResponseEntity.ok(exItem);
     }
