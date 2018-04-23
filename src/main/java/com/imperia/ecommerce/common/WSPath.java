@@ -3,7 +3,7 @@ package com.imperia.ecommerce.common;
 /**
  * All the webserivce paths Created by Kithmal on 12/29/17.
  */
-public interface WSPath {
+public interface WSPath extends MobileWSPath{
 
     // Category Management
     String CATEGORY = "/category-mgt";
