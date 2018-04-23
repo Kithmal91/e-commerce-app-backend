@@ -2,6 +2,7 @@ package com.imperia.ecommerce.controller;
 
 import com.imperia.ecommerce.common.WSPath;
 import com.imperia.ecommerce.dto.ItemDto;
+import com.imperia.ecommerce.dto.response.ItemResponse;
 import com.imperia.ecommerce.entity.ImageBank;
 import com.imperia.ecommerce.entity.Item;
 import com.imperia.ecommerce.repository.CategoryRepository;
@@ -40,27 +41,85 @@ public class ItemManagement {
     @ResponseBody
     public ResponseEntity<Item> save(@RequestBody ItemDto itemDto) {
 
-        ImageBank bank = new ImageBank();
-        bank.setId(itemDto.getReferenceId());
-        bank.setDescription(itemDto.getDescription());
-        bank.setImagePath(itemDto.getImageId());
-        bank.setStatus(itemDto.getStatus());
+        Item item = null;
+        ImageBank bank = null;
 
-        imageBankRepository.save(bank);
+        if (itemDto.getId() != null) {
+            item = itemRepository.findOne(itemDto.getId());
+            if (null != item) {
+                if (null != itemDto.getImagePath()) {
+                    bank = imageBankRepository.findOne(itemDto.getReferenceId());
+                    if (null != bank) {
+                        bank.setId(itemDto.getReferenceId());
+                        bank.setDescription(itemDto.getDescription());
+                        bank.setImagePath(itemDto.getImagePath());
+                        bank.setStatus(itemDto.getStatus());
+                        item.setImageBank(bank);
+                        imageBankRepository.save(bank);
+                    } else {
+                        bank = new ImageBank();
+                        bank.setId(itemDto.getReferenceId());
+                        bank.setDescription(itemDto.getDescription());
+                        bank.setImagePath(itemDto.getImagePath());
+                        bank.setStatus(itemDto.getStatus());
+                        try {
+                            ImageBank exBank = imageBankRepository.save(bank);
+                            item.setImageBank(exBank);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                item.setDescription(itemDto.getDescription());
+                item.setStatus(itemDto.getStatus());
+                item.setDiliveryStatus(itemDto.getDiliveryStatus());
+                //  item.setHeight(itemDto.getHeight());
+                item.setItemName(itemDto.getItemName());
+                item.setQuantity(itemDto.getQuantity());
+                item.setReferenceId(itemDto.getReferenceId());
+                item.setCost(itemDto.getCost());
+                item.setDiscount(itemDto.getDiscount());
+                item.setRetailPrice(itemDto.getRetailPrice());
+                item.setWeight(itemDto.getWeight());
+                //    item.setWidth(itemDto.getWidth());
+                item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
+            }
+        } else {
+            item = new Item();
+            if (null != itemDto.getImagePath()) {
+                bank = imageBankRepository.findOne(itemDto.getReferenceId());
+                if (null != bank) {
+                    bank.setId(itemDto.getReferenceId());
+                    bank.setDescription(itemDto.getDescription());
+                    bank.setImagePath(itemDto.getImagePath());
+                    bank.setStatus(itemDto.getStatus());
+                    item.setImageBank(bank);
+                    imageBankRepository.save(bank);
+                } else {
+                    bank = new ImageBank();
+                    bank.setId(itemDto.getReferenceId());
+                    bank.setDescription(itemDto.getDescription());
+                    bank.setImagePath(itemDto.getImagePath());
+                    bank.setStatus(itemDto.getStatus());
+                    item.setImageBank(bank);
+                    imageBankRepository.save(bank);
+                }
+            }
+            item.setDescription(itemDto.getDescription());
+            item.setStatus(itemDto.getStatus());
+            item.setDiliveryStatus(itemDto.getDiliveryStatus());
+            //  item.setHeight(itemDto.getHeight());
+            item.setItemName(itemDto.getItemName());
+            item.setQuantity(itemDto.getQuantity());
+            item.setReferenceId(itemDto.getReferenceId());
+            item.setCost(itemDto.getCost());
+            item.setDiscount(itemDto.getDiscount());
+            item.setRetailPrice(itemDto.getRetailPrice());
+            item.setWeight(itemDto.getWeight());
+            //    item.setWidth(itemDto.getWidth());
+            item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
+        }
 
-        Item item = new Item();
-        item.setDescription(itemDto.getDescription());
-        item.setStatus(itemDto.getStatus());
-        item.setHeight(itemDto.getHeight());
-        item.setImageBank(bank);
-        item.setItemName(itemDto.getItemName());
-        item.setQuantity(itemDto.getQuantity());
-        item.setReferenceId(itemDto.getReferenceId());
-        item.setRetailPrice(itemDto.getRetailPrice());
-        item.setWeight(itemDto.getWeight());
-        item.setWidth(itemDto.getWidth());
-
-        item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
         Item exItem = itemRepository.save(item);
         return ResponseEntity.ok(exItem);
     }
@@ -70,9 +129,9 @@ public class ItemManagement {
      *
      * @return
      */
-    @RequestMapping(path = WSPath.ITEM_GET_ALL, method = RequestMethod.GET)
+    @RequestMapping(path = WSPath.ITEM_BY_CATEGORY, method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> getAll() {
+    public List<Item> getByCategory() {
 
         Iterable<Item> itemList = itemRepository.findAll();
         List<Item> list = new ArrayList<>();
@@ -101,11 +160,40 @@ public class ItemManagement {
      * @param itemDto
      * @return
      */
-    @RequestMapping(path = WSPath.ITEM_BY_CATEGORY, method = RequestMethod.GET)
+    @RequestMapping(path = WSPath.IMAGE_GET_ALL, method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> getByCategory(ItemDto itemDto) {
+    public ItemResponse getAll(ItemDto itemDto) {
 
-        List<Item> item = itemRepository.findByCategory(itemDto.getItemCategoryId());
-        return item;
+        Iterable<Item> itemList = itemRepository.findAll();
+        List<Item> list = new ArrayList<>();
+        itemList.forEach(list::add);
+        ItemResponse response = new ItemResponse();
+
+        List<ItemDto> dtos = new ArrayList<>();
+        for (Item item : list) {
+            ItemDto dto = new ItemDto();
+            dto.setId(item.getId());
+            dto.setWidth(item.getWidth());
+            dto.setWeight(item.getWeight());
+            dto.setHeight(item.getHeight());
+            dto.setReferenceId(item.getReferenceId());
+            dto.setDiscount(item.getDiscount());
+            dto.setCost(item.getCost());
+            dto.setRetailPrice(item.getRetailPrice());
+            if (null != item.getImageBank()) {
+                dto.setImagePath(item.getImageBank().getImagePath());
+            }
+            dto.setItemCategoryId(item.getCategory().getId());
+            dto.setMainCategory(item.getCategory().getMainCategory());
+            dto.setDescription(item.getDescription());
+            dto.setStatus(item.getStatus());
+            dto.setDiliveryStatus(item.getDiliveryStatus());
+            dto.setItemName(item.getItemName());
+            dto.setItemCategoryName(item.getCategory().getCategoryName());
+            dto.setQuantity(item.getQuantity());
+            dtos.add(dto);
+        }
+        response.setDtos(dtos);
+        return response;
     }
 }
