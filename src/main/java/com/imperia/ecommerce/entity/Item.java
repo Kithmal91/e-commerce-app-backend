@@ -31,6 +31,12 @@ public class Item extends Audit {
     @Column(name = "item_retail_price")
     private double retailPrice;
 
+    @Column(name = "item_cost")
+    private double cost;
+
+    @Column(name = "item_discount")
+    private double discount;
+
     @Column(name = "item_width")
     private double width;
 
@@ -45,6 +51,9 @@ public class Item extends Audit {
 
     @Column(name = "item_status")
     private String status;
+
+    @Column(name = "item_dilivery_status")
+    private String diliveryStatus;
 
     @Column(name = "item_description")
     private String description;
@@ -215,6 +224,48 @@ public class Item extends Audit {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the cost
+     */
+    public double getCost() {
+        return cost;
+    }
+
+    /**
+     * @param cost the cost to set
+     */
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    /**
+     * @return the discount
+     */
+    public double getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    /**
+     * @return the diliveryStatus
+     */
+    public String getDiliveryStatus() {
+        return diliveryStatus;
+    }
+
+    /**
+     * @param diliveryStatus the diliveryStatus to set
+     */
+    public void setDiliveryStatus(String diliveryStatus) {
+        this.diliveryStatus = diliveryStatus;
     }
 
 }

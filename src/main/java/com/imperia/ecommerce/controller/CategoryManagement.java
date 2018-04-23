@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Manage all the category related function
- * Created by Kithmal on 12/11/17.
+ * Manage all the category related function Created by Kithmal on 12/11/17.
  */
 @RequestMapping(WSPath.CATEGORY)
 @RestController
@@ -35,9 +34,9 @@ public class CategoryManagement {
 
         Category category = null;
 
-        if(categoryDto.getId() != null) {
+        if (categoryDto.getId() != null) {
             category = categoryRepository.findOne(categoryDto.getId());
-            if(null != category){
+            if (null != category) {
                 category.setStatus(categoryDto.getStatus());
                 category.setCategoryName(categoryDto.getCategoryName());
                 category.setDescription(categoryDto.getDescription());
@@ -73,7 +72,7 @@ public class CategoryManagement {
 
         List<CategoryDto> dtos = new ArrayList<>();
 
-        for(Category category : list){
+        for (Category category : list) {
             CategoryDto dto = new CategoryDto();
             dto.setStatus(category.getStatus());
             dto.setCategoryName(category.getCategoryName());
@@ -101,5 +100,35 @@ public class CategoryManagement {
         return ResponseEntity.ok(category);
     }
 
+    /**
+     * Get all by Main Category
+     *
+     * @param categoryDto
+     * @return
+     */
+    @RequestMapping(path = WSPath.CATEGORY_GET_ALL_BY_MAIN_CATEGORY, method = RequestMethod.POST)
+    @ResponseBody
+    public CategoryResponse getAllbyMainCategory(@RequestBody CategoryDto categoryDto) {
+
+        Iterable<Category> categoryList = categoryRepository.findByMainCategory(categoryDto.getMainCategory());
+        List<Category> list = new ArrayList<>();
+        categoryList.forEach(list::add);
+        CategoryResponse response = new CategoryResponse();
+
+        List<CategoryDto> dtos = new ArrayList<>();
+
+        for (Category category : list) {
+            CategoryDto dto = new CategoryDto();
+            dto.setStatus(category.getStatus());
+            dto.setCategoryName(category.getCategoryName());
+            dto.setDescription(category.getDescription());
+            dto.setMainCategory(category.getMainCategory());
+            dto.setId(category.getId());
+            dtos.add(dto);
+        }
+
+        response.setDtos(dtos);
+        return response;
+    }
 
 }

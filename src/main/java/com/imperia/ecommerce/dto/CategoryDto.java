@@ -2,13 +2,8 @@ package com.imperia.ecommerce.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
- * CategoryDto Table
- * Created by Kithmal on 12/11/17.
+ * CategoryDto Table Created by Kithmal on 12/11/17.
  */
 public class CategoryDto {
 
@@ -22,7 +17,6 @@ public class CategoryDto {
     private String description;
     @JsonProperty(value = "status")
     private String status;
-
 
     public String getMainCategory() {
         return mainCategory;

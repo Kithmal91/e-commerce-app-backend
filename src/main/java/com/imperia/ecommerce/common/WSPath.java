@@ -13,6 +13,9 @@ public interface WSPath {
 
     //Get all categories
     String CATEGORY_GET_ALL = "/get-all";
+    
+    //Get all categories
+    String CATEGORY_GET_ALL_BY_MAIN_CATEGORY = "/main-category/get";
 
     //Get by Category ID
     String CATEGORY_GET_BY_ID = "/category-id/get";
