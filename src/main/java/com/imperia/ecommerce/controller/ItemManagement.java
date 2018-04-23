@@ -40,29 +40,60 @@ public class ItemManagement {
     @ResponseBody
     public ResponseEntity<Item> save(@RequestBody ItemDto itemDto) {
 
-        ImageBank bank = new ImageBank();
-        bank.setId(itemDto.getReferenceId());
-        bank.setDescription(itemDto.getDescription());
-        bank.setImagePath(itemDto.getImageId());
-        bank.setStatus(itemDto.getStatus());
+        if(null != itemDto.getId()){
 
-        imageBankRepository.save(bank);
+            itemRepository.findOne(itemDto.getId());
 
-        Item item = new Item();
-        item.setDescription(itemDto.getDescription());
-        item.setStatus(itemDto.getStatus());
-        item.setHeight(itemDto.getHeight());
-        item.setImageBank(bank);
-        item.setItemName(itemDto.getItemName());
-        item.setQuantity(itemDto.getQuantity());
-        item.setReferenceId(itemDto.getReferenceId());
-        item.setRetailPrice(itemDto.getRetailPrice());
-        item.setWeight(itemDto.getWeight());
-        item.setWidth(itemDto.getWidth());
+            ImageBank bank = new ImageBank();
+            bank.setId(itemDto.getReferenceId());
+            bank.setDescription(itemDto.getDescription());
+            bank.setImagePath(itemDto.getImageId());
+            bank.setStatus(itemDto.getStatus());
 
-        item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
-        Item exItem = itemRepository.save(item);
-        return ResponseEntity.ok(exItem);
+            imageBankRepository.save(bank);
+
+            Item item = new Item();
+            item.setDescription(itemDto.getDescription());
+            item.setStatus(itemDto.getStatus());
+            item.setHeight(itemDto.getHeight());
+            item.setImageBank(bank);
+            item.setItemName(itemDto.getItemName());
+            item.setQuantity(itemDto.getQuantity());
+            item.setReferenceId(itemDto.getReferenceId());
+            item.setRetailPrice(itemDto.getRetailPrice());
+            item.setWeight(itemDto.getWeight());
+            item.setWidth(itemDto.getWidth());
+
+            item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
+            Item exItem = itemRepository.save(item);
+            return ResponseEntity.ok(exItem);
+
+        } else {
+
+            ImageBank bank = new ImageBank();
+            bank.setId(itemDto.getReferenceId());
+            bank.setDescription(itemDto.getDescription());
+            bank.setImagePath(itemDto.getImageId());
+            bank.setStatus(itemDto.getStatus());
+
+            imageBankRepository.save(bank);
+
+            Item item = new Item();
+            item.setDescription(itemDto.getDescription());
+            item.setStatus(itemDto.getStatus());
+            item.setHeight(itemDto.getHeight());
+            item.setImageBank(bank);
+            item.setItemName(itemDto.getItemName());
+            item.setQuantity(itemDto.getQuantity());
+            item.setReferenceId(itemDto.getReferenceId());
+            item.setRetailPrice(itemDto.getRetailPrice());
+            item.setWeight(itemDto.getWeight());
+            item.setWidth(itemDto.getWidth());
+
+            item.setCategory(categoryRepository.findOne(itemDto.getItemCategoryId()));
+            Item exItem = itemRepository.save(item);
+            return ResponseEntity.ok(exItem);
+        }
     }
 
     /**
